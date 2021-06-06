@@ -15,6 +15,7 @@ export default function Topbar() {
     const username = document.getElementById("searchInput").value;
     let path=`/profile/${username}`;
     history.push(path);
+    window.location.reload();
   }
 
 
