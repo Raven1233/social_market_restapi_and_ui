@@ -38,7 +38,7 @@ export default function Post({ post }) {
   
   const deletePost=async()=>{
       try{
-        await axios.delete(`/posts/${post._id}`, {userId:currentUser._id});
+        await axios.delete(`/posts/${post._id}`, {data:{userId:currentUser._id}});
         window.location.reload();
       }
       catch(err){

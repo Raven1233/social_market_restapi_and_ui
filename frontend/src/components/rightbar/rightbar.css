@@ -97,6 +97,7 @@
   cursor: pointer;
 }
 
+
 .rightbarFollowButton:focus{
   outline:none;
 }
@@ -117,4 +118,75 @@
 
 .rightbarLogoutButton:focus{
   outline:none;
+}
+
+.rightbarProfileButton{
+  position: absolute;
+  top: 504px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  border: none;
+  background-color: #F08080;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.rightbarProfileButton:focus{
+  outline:none;
+}
+
+.rightbarCoverButton{
+  position: absolute;
+  margin-bottom: 10px;
+  bottom: -24px;
+  margin-left: 50px;
+  border: none;
+  background-color: #F08080;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.rightbarCoverButton:focus{
+  outline:none;
+}
+
+.changeProfilePicture{
+  margin-top: 10px;
+  border: none;
+  background-color: #F08080;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.changeCoverPicture{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: none;
+  background-color: #F08080;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
 }

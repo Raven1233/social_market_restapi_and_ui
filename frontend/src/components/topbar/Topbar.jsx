@@ -1,14 +1,24 @@
 import "./topbar.css";
 import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 import {Link} from "react-router-dom";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {AuthContext} from "../../context/AuthContext";
 import {useHistory} from "react-router-dom";
+import axios from "axios";
 export default function Topbar() {
 
   
   const {user} = useContext(AuthContext);
+  const [curruser,setCurrUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  useEffect(()=>{
+    const fetchUser = async() => {
+      const res = await axios.get(`/users?userId=${user._id}`);
+      setCurrUser(res.data)
+    };
+    fetchUser();
+  },[user._id])
 
   const history=useHistory();
   const routerProfile=()=>{
@@ -62,8 +72,8 @@ export default function Topbar() {
         </div>
         <Link to={`/profile/${user.username}`}>
           <img src={
-            user.profilePicture
-              ? PF + user.profilePicture
+            curruser.profilePicture
+              ? PF + curruser.profilePicture
               : PF + "person/no-avatar.png"
           } 
           alt="" 

@@ -1,13 +1,21 @@
 import "./share.css";
 import {PermMedia, Label,Room, EmojiEmotions, Cancel} from "@material-ui/icons";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {AuthContext} from "../../context/AuthContext";
 import axios from "axios";
 export default function Share() {
   const {user} = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const desc = useRef();
+  const [curruser,setCurrUser] = useState({});
   const [file, setFile] = useState(null);
+  useEffect(()=>{
+    const fetchUser = async() => {
+      const res = await axios.get(`/users?userId=${user._id}`);
+      setCurrUser(res.data)
+    };
+    fetchUser();
+  },[user._id])
   const submitHandler= async(e) =>{
     e.preventDefault();
     const newPost={
@@ -36,7 +44,7 @@ export default function Share() {
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img className="shareProfileImg" src={user.profilePicture ? PF+user.profilePicture : PF+"person/no-avatar.png"} alt="" />
+          <img className="shareProfileImg" src={curruser.profilePicture ? PF+curruser.profilePicture : PF+"person/no-avatar.png"} alt="" />
           <input
             placeholder={"Put up a picture for sale "+user.username+":-"}
             className="shareInput"
