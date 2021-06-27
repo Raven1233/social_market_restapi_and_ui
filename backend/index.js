@@ -9,9 +9,9 @@ const authRoute = require("./routes/auth");
 const postsRoute = require("./routes/posts");
 const conversationRoute = require("./routes/conversations");
 const messageRoute = require("./routes/messages");
+const paymentRoute=require("./routes/paywall");
 const multer = require("multer");
 const path = require("path");
-
 dotenv.config();
 
 mongoose.connect(process.env.MONGO_URL, 
@@ -53,6 +53,7 @@ app.use("/api/auth",authRoute);
 app.use("/api/posts",postsRoute);
 app.use("/api/conversations",conversationRoute);
 app.use("/api/messages",messageRoute);
+
 app.listen(8800,()=>{
     console.log("Backend server is running");
 })

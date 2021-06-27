@@ -1,26 +1,62 @@
 import "./rightbar.css";
 import { Users } from "../../dummyData";
 import Online from "../online/Online";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { Add, LabelRounded, Remove, Person, Image } from "@material-ui/icons";
+import { Add, LabelRounded, Remove, Person, Image,LabelImportant } from "@material-ui/icons";
 import {useHistory} from "react-router-dom";
 import { logoutCall } from "../../apiCalls";
+import {io} from "socket.io-client";
 export default function Rightbar({ newuser }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
+  const [cfriends, setCfriends]=useState([]);
   const [conversations, setConversations]= useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
   const [profilepic, setProfilePic] = useState(null);
   const [coverpic, setCoverPic] = useState(null);
+  const [onlineUsers, setOnlineUsers]= useState([]);
+  const [onlineFriends,setOnlineFriends] = useState([]);
+  const socket = useRef();
   const [followed, setFollowed] = useState(
     currentUser.following.includes(newuser?.id)
   );
 
   console.log(newuser);
   
+  useEffect(()=>{
+    socket.current=io("ws://localhost:8900");
+    socket.current.emit("addUser",currentUser._id);
+    socket.current.on("getUsers",(users)=>{
+        setOnlineUsers(
+            currentUser.following.filter((f)=>users.some((u) => u.userId === f))
+        );
+    })
+  },[currentUser])
+  useEffect(() => {
+    const getFriends = async () => {
+      
+      try {
+        const friendList = await axios.get("/users/friends/" + newuser._id);
+        setFriends(friendList.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getFriends();
+  }, [newuser]);
+  useEffect(()=>{
+    const getCfriends = async()=>{
+        const res=await axios.get("/users/friends/" + currentUser._id);
+        setCfriends(res.data);
+    };
+    getCfriends();
+},[currentUser._id]);
+  useEffect(()=>{
+    setOnlineFriends(cfriends.filter((f)=>onlineUsers.includes(f._id)));
+  },[cfriends,onlineUsers]);
   const history=useHistory();
   const routerChange=()=>{  
     logoutCall({},dispatch);
@@ -79,18 +115,7 @@ export default function Rightbar({ newuser }) {
       console.log(err);
     }
 }
-  useEffect(() => {
-    const getFriends = async () => {
-      
-      try {
-        const friendList = await axios.get("/users/friends/" + newuser._id);
-        setFriends(friendList.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getFriends();
-  }, [newuser]);
+  
 
   const handleClick = async () => {
     
@@ -130,17 +155,32 @@ export default function Rightbar({ newuser }) {
     return (
       <>
         <div className="birthdayContainer">
-          <img className="birthdayImg" src="assets/gift.png" alt="" />
+          <LabelImportant fontSize="large"/>
           <span className="birthdayText">
-            <b>Pola Foster</b> and <b>3 other followers</b> have a birthday today.
+            IF PRICE IS NOT INDICATED THEN PICTURE IS NOT FOR SALE!!!
           </span>
         </div>
         <img className="rightbarAd" src="assets/ad.png" alt="" />
         <h4 className="rightbarTitle">Online Followers</h4>
         <ul className="rightbarFriendList">
-          {Users.map((u) => (
-            <Online key={u.id} user={u} />
-          ))}
+        {onlineFriends.map((o)=>(
+            <div 
+                className="chatOnlineFriend" 
+            >
+                <div className="chatOnlineImgContainer">
+                    <img className="chatOnlineImg" 
+                    src={
+                        o?.profilePicture
+                          ? PF + o.profilePicture
+                          : PF + "person/no-avatar.png"
+                    }
+                    alt=""
+                    />
+                    <div className="chatOnlineBadge"></div>
+                </div>
+                <span className="chatOnlineName">{o?.username}</span>
+            </div>
+         ))} 
         </ul>
       </>
     );

@@ -43,7 +43,7 @@ router.delete("/:id",async(req,res)=>{
         }else{
             
             res.status(403).json("You can only delete your post!!")
-
+            
         }
     }catch(err){
         res.status(500).json(err);

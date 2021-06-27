@@ -11,6 +11,8 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import Paywall from "./pages/paywall/Paywall";
+import Thankyou from "./pages/thank you/Thankyou";
 function App() {
 
   const {user} = useContext(AuthContext)
@@ -31,6 +33,12 @@ function App() {
         </Route>
         <Route path="/profile/:username">
            <Profile />
+        </Route>
+        <Route path="/paywall/:id">
+           <Paywall />
+        </Route>
+        <Route path="/thankyou/:id">
+           <Thankyou />
         </Route>
       </Switch>
     </Router>

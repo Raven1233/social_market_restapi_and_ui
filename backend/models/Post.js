@@ -15,6 +15,11 @@ const PostSchema = new mongoose.Schema({
     likes:{
         type:Array,
         default: []
+    },
+    price:{
+        type:String,
+        default:"",
+        max:8
     }
 },
 { timestamps:true }

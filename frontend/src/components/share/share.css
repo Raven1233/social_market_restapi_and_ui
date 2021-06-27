@@ -73,6 +73,9 @@
     cursor: pointer;
     color: white;
 }
+#textArea:focus{
+  outline: none;
+}
 
 .shareImgContainer{
   padding: 0 20px 10px 20px;

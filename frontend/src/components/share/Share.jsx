@@ -7,6 +7,7 @@ export default function Share() {
   const {user} = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const desc = useRef();
+  const price=useRef();
   const [curruser,setCurrUser] = useState({});
   const [file, setFile] = useState(null);
   useEffect(()=>{
@@ -20,7 +21,8 @@ export default function Share() {
     e.preventDefault();
     const newPost={
       userId:user._id,
-      desc: desc.current.value
+      desc: desc.current.value,
+      price:price.current.value
     };
 
     if (file){
@@ -49,6 +51,11 @@ export default function Share() {
             placeholder={"Put up a picture for sale "+user.username+":-"}
             className="shareInput"
             ref={desc}
+          />
+          <textarea id="textArea" 
+            placeholder={"Indicate the price of the picture:-"}
+            className="sharePrice"
+            ref={price}
           />
         </div>
         <hr className="shareHr"/>

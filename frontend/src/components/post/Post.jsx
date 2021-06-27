@@ -3,7 +3,7 @@ import { Delete, MoreVert } from "@material-ui/icons";
 import { useContext, useEffect,useState } from "react";
 import axios from "axios";
 import {format} from "timeago.js"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 export default function Post({ post }) {
   const [like,setLike] = useState(post.likes.length);
@@ -46,6 +46,12 @@ export default function Post({ post }) {
       }
       
   }
+  const history=useHistory();
+  const routePaywall=()=>{
+    let path=`/paywall/${post._id}`
+    history.push(path);
+    window.location.reload();
+  }
   return (
     <div className="post">
       <div className="postWrapper">
@@ -62,6 +68,7 @@ export default function Post({ post }) {
               {user.username}
             </span>
             <span className="postDate">{format(post.createdAt)}</span>
+            
           </div>
           <div className="postTopRight">
             {post.userId==currentUser._id&&(
@@ -71,6 +78,8 @@ export default function Post({ post }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
+          <br></br>
+          <span className="postPrice">Price:-{post.price}</span>
           <img className="postImg" src={PF+post.img} alt="" />
         </div>
         <div className="postBottom">
@@ -79,9 +88,11 @@ export default function Post({ post }) {
             <img className="likeIcon" src={`${PF}heart.png`} onClick={likeHandler} alt="" />
             <span className="postLikeCounter">{like} people like it</span>
           </div>
-          <div className="postBottomRight">
-            <span className="postCommentText">{post.comment} comments</span>
-          </div>
+          {post.price!=="" && (<div className="postBottomRight">
+            {user.username !== currentUser.username && (
+              <button className="buyNowButton" onClick={routePaywall}>Buy now</button>
+            )}
+          </div>)}
         </div>
       </div>
     </div>

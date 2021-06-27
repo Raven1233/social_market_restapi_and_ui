@@ -21,13 +21,32 @@ export default function Topbar() {
   },[user._id])
 
   const history=useHistory();
-  const routerProfile=()=>{
+  const routerProfile=async()=>{
     const username = document.getElementById("searchInput").value;
-    let path=`/profile/${username}`;
+    const user_found= axios.get(`/users?username=${username}`);
+    if(user_found!==null){
+      console.log(username);
+      let path=`/profile/${username}`;
+      history.push(path);
+      window.location.reload();
+    }
+    else{
+      alert("User Not Found");
+    }
+  }
+  
+  const handleClick=(e)=>{
+    e.preventDefault();
+    let path=`/messenger`;
     history.push(path);
     window.location.reload();
   }
-
+  
+  const handleKeyPress=(e)=> {
+    if (e.key === 'Enter') {
+        routerProfile(); 
+    }
+  }
 
   return (
     <div className="topbarContainer">
@@ -43,8 +62,9 @@ export default function Topbar() {
             placeholder="Search for an artist"
             id="searchInput"
             type="text"
+            onKeyUp={handleKeyPress}
           />
-          <button className="searchButton" onClick={routerProfile}>Search</button>
+          <Search className="searchButton" onClick={routerProfile}></Search>
         </div>
       </div>
       <div className="topbarRight">
@@ -52,22 +72,22 @@ export default function Topbar() {
           <Link to="/" style={{textDecoration:"none"}}>
             <span className="topbarLink">Homepage</span>
           </Link>
-          <Link to="/messenger" style={{textDecoration:"none"}}>
+          <a href="#" onClick={handleClick} style={{textDecoration:"none"}}>
             <span className="topbarLink">Messenger</span>
-          </Link>
+          </a>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
             <Person />
-            <span className="topbarIconBadge">1</span>
+            
           </div>
           <div className="topbarIconItem">
             <Chat />
-            <span className="topbarIconBadge">2</span>
+            
           </div>
           <div className="topbarIconItem">
             <Notifications />
-            <span className="topbarIconBadge">1</span>
+            
           </div>
         </div>
         <Link to={`/profile/${user.username}`}>

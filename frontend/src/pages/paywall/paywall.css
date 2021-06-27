@@ -1,0 +1,211 @@
+.paywall{
+  width: 100vw;
+  height: 350vh;
+  background-color: #fde7f9;
+  background-image: repeating-linear-gradient(315deg, #fde7f9 0%, #aacaef 74%,#fde7f9 0%, #aacaef 74%);
+  background-repeat: repeat;      
+  display: flex;
+}
+#logo{
+  font-size: 40px;
+  margin-left: 10px;
+  font-weight: bold;
+  color: #F08080;
+  cursor: pointer;
+}
+.paywallWrapper{
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+}
+.paywallLeft,
+.paywallRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#buyingImage{
+    margin-top:50px;
+    margin-left: 25%;
+    width: 50%;
+    height: 50%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.billingBox{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: -100px;
+    background-color:transparent;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    justify-content: center;
+}
+.billingHeading{
+  font-size:25px;
+  font-weight: bold;
+  margin-left: 350px;
+  margin-top: 10px;
+}
+.formTags{
+  margin-left: 20px;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+.nameInput{
+    margin-left: 20px;
+    width: 400px;
+    height: 50px;
+    background-color:transparent;
+    border-radius: 10px;
+    border: 1px solid gray;
+    font-size: 18px;
+    padding-left: 20px;
+}
+
+.nameInput:focus{
+    outline: none;
+}
+
+.addressInput{
+  margin-left: 20px;
+  width: 600px;
+  height: 50px;
+  background-color:transparent;
+    border-radius: 10px;
+    border: 1px solid gray;
+    font-size: 18px;
+    padding-left: 20px;
+}
+
+.addressInput:focus{
+  outline: none;
+}
+
+.cdsInput{
+  margin-left: 20px;
+  width: 200px;
+  height: 50px;
+  background-color:transparent;
+    border-radius: 10px;
+    border: 1px solid gray;
+    font-size: 18px;
+    padding-left: 20px;
+}
+
+.cdsInput:focus{
+  outline: none;
+}
+
+.noInput{
+  margin-left: 20px;
+  width: 400px;
+  height: 50px;
+  background-color:transparent;
+    border-radius: 10px;
+    border: 1px solid gray;
+    font-size: 18px;
+    padding-left: 20px;
+}
+
+.noInput:focus{
+  outline: none;
+}
+
+#emailInput{
+  margin-left: 20px;
+  width: 400px;
+  height: 50px;
+  background-color:transparent;
+    border-radius: 10px;
+    border: 1px solid gray;
+    font-size: 18px;
+    padding-left: 20px;
+}
+
+#emailInput:focus{
+  outline: none;
+}
+
+select{
+  margin-left: 20px;
+  width: 400px;
+  height: 50px;
+  background-color:transparent;
+    border-radius: 10px;
+    border: 1px solid gray;
+    font-size: 18px;
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+
+select:focus{
+  outline: none;
+}
+
+select option[value="Select Payment"] {
+  background: rgba(253, 231, 249,1);
+}
+
+select option[value="Cash On Delivery"] {
+  background: rgba(253, 231, 249,1);
+}
+
+select option[value="Credit/Debit Card"] {
+  background: rgba(253, 231, 249,1);
+}
+
+select option[value="UPI-(PayTM,GPay,Paypal)"] {
+  background: rgba(253, 231, 249,1);
+}
+
+select option[value="Net Banking"] {
+  background: rgba(253, 231, 249,1);
+}
+
+.commentsInput{
+  margin-left: 20px;
+  width: 400px;
+  height: 200px;
+  background-color:transparent;
+    border-radius: 10px;
+    border: 1px solid gray;
+    font-size: 18px;
+    padding-left: 20px;
+}
+
+.commentsInput:focus{
+  outline: none;
+}
+
+.orderButton{
+  border: none;
+    margin-left: 650px;
+    margin-top: 20px;
+    width: 198px;
+    height: 50px;
+    padding: 7px;
+    border-radius: 50px;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color:transparent;
+    font-weight: 500;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.orderButton:hover{
+  background: linear-gradient(315deg, #ffd9de 0%, #e99ba6 74%);;
+  color:white;
+}
