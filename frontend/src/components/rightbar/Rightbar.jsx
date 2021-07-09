@@ -21,11 +21,26 @@ export default function Rightbar({ newuser }) {
   const [onlineFriends,setOnlineFriends] = useState([]);
   const socket = useRef();
   const [followed, setFollowed] = useState(
-    currentUser.following.includes(newuser?.id)
+    currentUser.following.includes(newuser?._id)
   );
-
-  console.log(newuser);
   
+  useEffect(()=>{
+    if(currentUser.following.includes(newuser?._id)){
+      setFollowed(true);
+    }
+  })
+  useEffect(()=>{
+    const getConversations = async()=>{
+        try{
+            const res = await axios.get(`/conversations/find/${currentUser._id}/${newuser._id}`);
+            setConversations(res.data);
+        }catch(err){
+            console.log(err);
+        }
+    };
+    getConversations();
+  }, [currentUser,newuser]);
+  console.log(conversations);
   useEffect(()=>{
     socket.current=io("ws://localhost:8900");
     socket.current.emit("addUser",currentUser._id);
@@ -133,17 +148,18 @@ export default function Rightbar({ newuser }) {
           userId: currentUser._id,
         });
         dispatch({ type: "FOLLOW", payload: newuser._id });
-        const conversation={
-          senderId: currentUser._id,
-          receiverId: newuser._id,
-      };
-        try{
-          const res = await axios.post("/conversations",conversation);
-          setConversations([...conversations,res.data]);
-        }catch(err){
-          console.log(err);
-      }
-        
+        if(conversations===null||!((conversations.members.includes(currentUser._id))&&(conversations.members.includes(newuser._id)))){
+          const conversation={
+            senderId: currentUser._id,
+            receiverId: newuser._id,
+          };
+          try{
+            const res = await axios.post("/conversations",conversation);
+            setConversations([...conversations,res.data]);
+          }catch(err){
+            console.log(err);
+          }
+        }
       }
       setFollowed(!followed);
     } catch (err) {
@@ -243,7 +259,7 @@ export default function Rightbar({ newuser }) {
             </span>
           </div>
         </div>
-        <h4 className="rightbarTitle">People You Follow:-</h4>
+        <h4 className="rightbarTitle">People Following:-</h4>
         <div className="rightbarFollowings">
           {friends.map((friend) => (
             <Link

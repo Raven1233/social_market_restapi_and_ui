@@ -79,7 +79,7 @@ export default function Post({ post }) {
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
           <br></br>
-          <span className="postPrice">Price:-{post.price}</span>
+          <span className="postPrice">Price:-{post.price?post.price:" (Not for sale!!!)"}</span>
           <img className="postImg" src={PF+post.img} alt="" />
         </div>
         <div className="postBottom">
