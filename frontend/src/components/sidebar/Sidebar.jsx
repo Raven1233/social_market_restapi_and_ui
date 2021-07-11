@@ -12,51 +12,40 @@ import {
 } from "@material-ui/icons";
 import { Users } from "../../dummyData";
 import CloseFriend from "../closeFriend/CloseFriend";
-
+import { useAlert } from 'react-alert'
+import { useState } from "react";
+import Popup from 'reactjs-popup';
+import Swal from 'sweetalert2';
 export default function Sidebar() {
+  const [feedback,setFeedback]=useState("");
+  const handleSubmit=e=>{
+     e.preventDefault();
+     Swal.fire({
+      position: 'right-center',
+      icon: 'success',
+      title: 'Thank you for your feedback',
+      showConfirmButton: false,
+      timer: 1500
+    })
+     setFeedback("");
+  }
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
-        <ul className="sidebarList">
-          <li className="sidebarListItem">
-            <RssFeed className="sidebarIcon" />
-            <span className="sidebarListItemText">Feed</span>
-          </li>
-          <li className="sidebarListItem">
-            <Chat className="sidebarIcon" />
-            <span className="sidebarListItemText">Chats</span>
-          </li>
-          <li className="sidebarListItem">
-            <PlayCircleFilledOutlined className="sidebarIcon" />
-            <span className="sidebarListItemText">Videos</span>
-          </li>
-          <li className="sidebarListItem">
-            <Group className="sidebarIcon" />
-            <span className="sidebarListItemText">Groups</span>
-          </li>
-          <li className="sidebarListItem">
-            <Bookmark className="sidebarIcon" />
-            <span className="sidebarListItemText">Bookmarks</span>
-          </li>
-          <li className="sidebarListItem">
-            <HelpOutline className="sidebarIcon" />
-            <span className="sidebarListItemText">Questions</span>
-          </li>
-          <li className="sidebarListItem">
-            <WorkOutline className="sidebarIcon" />
-            <span className="sidebarListItemText">Jobs</span>
-          </li>
-          <li className="sidebarListItem">
-            <Event className="sidebarIcon" />
-            <span className="sidebarListItemText">Events</span>
-          </li>
-          <li className="sidebarListItem">
-            <School className="sidebarIcon" />
-            <span className="sidebarListItemText">Courses</span>
-          </li>
-        </ul>
-        <button className="sidebarButton">Show More</button>
-        <hr className="sidebarHr" />
+        <h3>Welcome to Artme!!!</h3>
+        <br></br>
+        <p>Artme is a website dedicated to up and coming artists who are strugging out there. Our platform
+          has been duly engineered to cater to needs of these people. We strive to provide them with a platform 
+          where they can express their talent and build a faithful community and are also able to stay motivated by
+          being able to monetise their passion.
+        </p>
+        <br></br>
+        <h3>Give us your feedback:-</h3>
+        <br></br>
+        <form>
+        <textarea className="feedbox" onChange={(e)=>setFeedback(e.target.value)} value={feedback}/>
+        <button className="feedbutton" type="submit" onClick={handleSubmit}>Submit</button>
+        </form>
       </div>
     </div>
   );

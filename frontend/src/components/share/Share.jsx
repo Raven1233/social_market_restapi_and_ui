@@ -48,7 +48,7 @@ export default function Share() {
         <div className="shareTop">
           <img className="shareProfileImg" src={curruser.profilePicture ? PF+curruser.profilePicture : PF+"person/no-avatar.png"} alt="" />
           <input
-            placeholder={"Put up a picture for sale "+user.username+":-"}
+            placeholder={"Put up a picture for sale, "+user.username+":-"}
             className="shareInput"
             ref={desc}
           />
@@ -69,21 +69,10 @@ export default function Share() {
             <div className="shareOptions">
                 <label htmlFor="file" className="shareOption">
                     <PermMedia htmlColor="tomato" className="shareIcon"/>
-                    <span className="shareOptionText">Artwork</span>
+                    <span className="shareOptionText">Artwork(supports .png, .jpg and .jpeg)</span>
                     <input style={{display:"none"}}type="file" id="file" accept=".png,.jpeg,.jpg" onChange={(e)=>setFile(e.target.files[0])}/>
                 </label>
-                <div className="shareOption">
-                    <Label htmlColor="blue" className="shareIcon"/>
-                    <span className="shareOptionText">Tag</span>
-                </div>
-                <div className="shareOption">
-                    <Room htmlColor="green" className="shareIcon"/>
-                    <span className="shareOptionText">Location</span>
-                </div>
-                <div className="shareOption">
-                    <EmojiEmotions htmlColor="goldenrod" className="shareIcon"/>
-                    <span className="shareOptionText">Feelings</span>
-                </div>
+                
             </div>
             <button className="shareButton" type="submit">Put up for Sale</button>
         </form>

@@ -176,7 +176,7 @@ export default function Rightbar({ newuser }) {
             IF PRICE IS NOT INDICATED THEN PICTURE IS NOT FOR SALE!!!
           </span>
         </div>
-        <img className="rightbarAd" src="assets/ad.png" alt="" />
+        <br></br><br></br><br></br>
         <h4 className="rightbarTitle">Online Followers</h4>
         <ul className="rightbarFriendList">
         {onlineFriends.map((o)=>(
@@ -238,27 +238,7 @@ export default function Rightbar({ newuser }) {
           </button>
           </form>
         )}
-        <h4 className="rightbarTitle">User information:-</h4>
-        <div className="rightbarInfo">
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">City:</span>
-            <span className="rightbarInfoValue">{newuser.city}</span>
-          </div>
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">From:</span>
-            <span className="rightbarInfoValue">{newuser.from}</span>
-          </div>
-          <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">UserType:</span>
-            <span className="rightbarInfoValue">
-              {newuser.userType === 1
-                ? "Artist"
-                : newuser.userType === 2
-                ? "User"
-                : "-"}
-            </span>
-          </div>
-        </div>
+        
         <h4 className="rightbarTitle">People Following:-</h4>
         <div className="rightbarFollowings">
           {friends.map((friend) => (

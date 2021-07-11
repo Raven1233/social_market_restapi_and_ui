@@ -54,4 +54,19 @@
   list-style: none;
 }
 
-
+.feedbox{
+  height: 130px;
+  width: 250px;
+}
+.feedbox:focus{
+  outline: none;
+}
+.feedbutton{
+  position: relative;
+  left: 204px;
+  background: #F08080;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
