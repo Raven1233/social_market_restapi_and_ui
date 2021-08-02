@@ -73,6 +73,9 @@
     cursor: pointer;
     color: white;
 }
+#textArea{
+  resize: none;
+}
 #textArea:focus{
   outline: none;
 }

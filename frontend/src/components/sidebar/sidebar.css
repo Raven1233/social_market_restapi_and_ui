@@ -57,6 +57,7 @@
 .feedbox{
   height: 130px;
   width: 250px;
+  resize: none;
 }
 .feedbox:focus{
   outline: none;

@@ -14,13 +14,13 @@ app.post("/send_mail/:mail", async (req, res) => {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'your email id' || 'abc@gmail.com', 
-            pass: 'your password' || '1234' 
+            user: 'subhadeepdasasd12@gmail.com' || 'abc@gmail.com', 
+            pass: 'qwerty*1234#' || '1234' 
         }
     });
     var id = crypto.randomBytes(6).toString('base64').slice(0,6);
     let mailOptions = {
-        from: 'your email id', 
+        from: 'subhadeepdasasd12@gmail.com', 
         to: email, 
         subject: 'ArtMe:- Thank you for shopping with us',
         html: `

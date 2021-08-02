@@ -5,6 +5,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import {AuthContext} from "../../context/AuthContext";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
+import Swal from 'sweetalert2';
 export default function Topbar() {
 
   
@@ -23,15 +24,24 @@ export default function Topbar() {
   const history=useHistory();
   const routerProfile=async()=>{
     const username = document.getElementById("searchInput").value;
-    const user_found= axios.get(`/users?username=${username}`);
-    if(user_found!==null){
+    
+    const user_found= await axios.get(`/users?username=${username}`);
+    console.log(user_found);
+    if(user_found===undefined){
+      console.log("hello");
+      Swal.fire({
+        position: 'right-center',
+        icon: 'error',
+        title: 'User not found',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+    else{
       console.log(username);
       let path=`/profile/${username}`;
       history.push(path);
       window.location.reload();
-    }
-    else{
-      alert("User Not Found");
     }
   }
   

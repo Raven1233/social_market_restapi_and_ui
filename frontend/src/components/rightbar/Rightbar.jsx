@@ -176,6 +176,7 @@ export default function Rightbar({ newuser }) {
             IF PRICE IS NOT INDICATED THEN PICTURE IS NOT FOR SALE!!!
           </span>
         </div>
+        <img className="rightbarAd" src="assets/ad1.jpg" alt="" />
         <br></br><br></br><br></br>
         <h4 className="rightbarTitle">Online Followers</h4>
         <ul className="rightbarFriendList">

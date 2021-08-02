@@ -37,20 +37,32 @@ export default function Post({ post }) {
   }
   
   const deletePost=async()=>{
-      try{
-        await axios.delete(`/posts/${post._id}`, {data:{userId:currentUser._id}});
-        window.location.reload();
+      const find_post=await axios.get(`/posts/${post._id}`)
+      if(find_post===undefined){
+        console.log("does not exist")
       }
-      catch(err){
-        console.log(err);
+      else{
+        try{
+          await axios.delete(`/posts/${post._id}`, {data:{userId:currentUser._id}});
+          window.location.reload();
+        }
+        catch(err){
+          console.log(err);
+        }
       }
       
   }
   const history=useHistory();
-  const routePaywall=()=>{
-    let path=`/paywall/${post._id}`
-    history.push(path);
-    window.location.reload();
+  const routePaywall=async()=>{
+    const find_post=await axios.get(`/posts/${post._id}`)
+    if(find_post===undefined){
+      console.log("does not exist")
+    }
+    else{
+      let path=`/paywall/${post._id}`
+      history.push(path);
+      window.location.reload();
+    }
   }
   return (
     <div className="post">
