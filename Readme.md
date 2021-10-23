@@ -1,4 +1,4 @@
-# Description(Socail MArketplace Rest API using NodeJs, Express JS, MongoDB and UI using React JS):-
+# Description(Socail Marketplace Rest API using NodeJs, Express JS, MongoDB and UI using React JS):-
 This is a social marketplace restapi and ui created using Javascript, NodeJS and ReactJS. It uses MongoDB as its database for storing data with regards to users and their posts. It is catered to the needs of a modern day artist such that they can build a community and also sell their artworks which their respective communities can buy and support the artist.
 
 # Project Documentation(Under Calcutta University):- [Link](https://drive.google.com/file/d/1gfRDb-KRtuF62OU2DS32zhCf2E4eklqz/view?usp=sharing).
