@@ -20,6 +20,7 @@
     "react-tilt": "^0.1.4",
     "reactjs-popup": "^2.0.5",
     "socket.io-client": "^4.1.2",
+    "sweetalert": "^2.1.2",
     "sweetalert2": "^11.0.18",
     "timeago.js": "^4.0.2",
     "web-vitals": "^1.0.1"

@@ -1,11 +1,12 @@
 import axios from "axios";
+import swal from 'sweetalert';
 export const loginCall = async(userCredentials,dispatch)=>{
     dispatch({type: "LOGIN_START"});
     try{
         const res = await axios.post("auth/login",userCredentials);
         dispatch({type:"LOGIN_SUCCESS", payload:res.data});
     }catch(err){
-        alert('Login error(Incorrect username or password)');
+        swal('Login Failure','Login error(Incorrect username or password)','error');
         dispatch({type:"LOGIN_FAILURE", payload:err});
     }
 }
